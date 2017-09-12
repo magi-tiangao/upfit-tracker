@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      BLE TEST
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let device of devices">
+      <div>{{device.name}} {{device.id}}</div>
+      <div>{{device.rssi}}</div>
+    </ion-item>
+  </ion-list>
+</ion-content>
