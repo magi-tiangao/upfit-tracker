@@ -225,7 +225,7 @@ void setup()
 }
 
 void loop() {
-  if (readPressure) {
+  if (updatePressure) {
     updatePressure = false;
     updateBlePressure();
   }
