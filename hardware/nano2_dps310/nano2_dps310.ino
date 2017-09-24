@@ -177,23 +177,30 @@ long int readPressure() {
   return pressure;
 }
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
+  delay(5000);
+  Serial.println("DPS310-NANO starts up");
 
+  Serial.print("Initializing DPS310...");
   //Call begin to initialize ifxDps310
   //The parameter 0x76 is the bus address. The default address is 0x77 and does not need to be given.
   ifxDps310.begin(Wire, 0x77);
+  Serial.print("...");
 
   // IMPORTANT NOTE
   //If you face the issue that the DPS310 indicates a temperature around 60 °C although it should be around 20 °C (room temperature), you might have got an IC with a fuse bit problem
   //Call the following function directly after begin() to resolve this issue (needs only be called once after startup)
   ifxDps310.correctTemp();
+  Serial.println(" DONE");
 
+  Serial.print("Initializing BLE...");
   ble.init();
+  Serial.print("...");
   ble.onConnection(connectionCallBack);
   ble.onDisconnection(disconnectionCallBack);
   setAdvertisement();
+  Serial.print("...");
   // set adv_type(enum from 0)
   //    ADV_CONNECTABLE_UNDIRECTED
   //    ADV_CONNECTABLE_DIRECTED
